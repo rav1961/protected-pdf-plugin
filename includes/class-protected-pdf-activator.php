@@ -20,11 +20,9 @@
  * @subpackage Protected_Pdf_Plugin/includes
  * @author     Rafał Rojek <kontakt@rcode.pl>
  */
-if (!class_exists('Protected_Pdf_Plugin_Activator')) {
-    class Protected_Pdf_Plugin_Activator
+class Protected_Pdf_Plugin_Activator
+{
+    public static function activate()
     {
-        public static function activate()
-        {
-        }
     }
 }
