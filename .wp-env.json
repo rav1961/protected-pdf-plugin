@@ -1,0 +1,9 @@
+{
+  "core": "https://pl.wordpress.org/latest-pl_PL.zip",
+  "plugins": ["https://downloads.wordpress.org/plugin/classic-editor.zip"],
+  "port": 8000,
+  "testsPort": 8001,
+  "config": {
+    "WP_DEBUG_DISPLAY": true
+  }
+}
