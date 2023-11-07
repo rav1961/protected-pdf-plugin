@@ -17,3 +17,16 @@
  * Text Domain:       protected-pdf
  * Domain Path:       /languages
  */
+
+if (!defined('WPINC')) {
+    die;
+}
+
+if (!function_exists('activate_protected_pdf_plugin')) {
+    function activate_protected_pdf_plugin()
+    {
+        require_once plugin_dir_path(__FILE__) . 'includes/class-protected-pdf-activator.php';
+        Protected_PDF_Plugin_Activator::activate();
+    }
+}
+register_activation_hook(__FILE__, 'activate_protected_pdf_plugin');
