@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://boldway.eu
+ * @link       https://rcode.pl
  * @since      1.0.0
  *
  * @package    Protected_Pdf

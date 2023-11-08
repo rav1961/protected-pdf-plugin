@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://boldway.eu
+ * @link              https://rcode.pl
  * @since             1.0.0
  * @package           Protected_Pdf
  *
  * @wordpress-plugin
  * Plugin Name:       Protected PDF File
- * Plugin URI:        https://boldway.eu
+ * Plugin URI:        https://rcode.pl
  * Description:       Plugin for a secured PDF file in exchange for contact details collected by the form. The selected file remains restricted to protect against unauthorized access.
  * Version:           1.0.0
  * Author:            Rafał Rojek
- * Author URI:        https://boldway.eu/
+ * Author URI:        https://rcode.pl/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       protected-pdf

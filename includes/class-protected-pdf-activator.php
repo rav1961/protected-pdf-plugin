@@ -3,7 +3,7 @@
 /**
  * Fired during plugin activation
  *
- * @link       https://boldway.eu
+ * @link       https://rcode.pl
  * @since      1.0.0
  *
  * @package    Protected_Pdf
