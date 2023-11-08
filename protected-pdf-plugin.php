@@ -34,23 +34,24 @@ define('PROTECTED_PDF_FILE_TABLE', 'protected_pdf_files');
 define('PROTECTED_PDF_MEMBERS_TABLE', 'protected_pdf_members');
 define('PROTECTED_PDF_ACCESS_TIME', '+6 months');
 define('PROTECTED_PDF_COOKIE_NAME', 'pp');
+define('PROTECTED_PDF_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 function activate_protected_pdf()
 {
-    require_once plugin_dir_path(__FILE__) . 'includes/class-protected-pdf-activator.php';
+    require_once PROTECTED_PDF_PLUGIN_PATH . 'includes/class-protected-pdf-activator.php';
     Protected_PDF_Activator::activate();
 }
 register_activation_hook(__FILE__, 'activate_protected_pdf');
 
 function deactivate_protected_pdf()
 {
-    require_once plugin_dir_path(__FILE__) . 'includes/class-protected-pdf-deactivator.php';
+    require_once PROTECTED_PDF_PLUGIN_PATH . 'includes/class-protected-pdf-deactivator.php';
     Protected_Pdf_Deactivator::deactivate();
 }
 register_deactivation_hook(__FILE__, 'deactivate_protected_pdf');
 
-require plugin_dir_path(__FILE__) . 'includes/class-protected-pdf.php';
-require plugin_dir_path(__FILE__) . 'includes/proxy-protected-files.php';
+require PROTECTED_PDF_PLUGIN_PATH . 'includes/class-protected-pdf.php';
+require PROTECTED_PDF_PLUGIN_PATH . 'includes/proxy-protected-files.php';
 
 function run_protected_pdf()
 {

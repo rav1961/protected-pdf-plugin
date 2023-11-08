@@ -41,6 +41,8 @@ class Protected_Pdf_Public
 	 */
 	private $version;
 
+	private $pdf_file;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -53,6 +55,7 @@ class Protected_Pdf_Public
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->pdf_file = new Protected_Pdf_File();
 	}
 
 	/**

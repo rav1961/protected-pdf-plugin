@@ -210,6 +210,7 @@ class Protected_Pdf
 		return $this->version;
 	}
 
+	// TODO: move to class-protected-pdf-file.php
 	public static function isProtectedFile($file)
 	{
 		global $wpdb;
