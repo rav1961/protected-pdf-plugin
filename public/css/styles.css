@@ -1,0 +1,110 @@
+.pdf-plugin-wrapper {
+  margin: 2rem auto;
+}
+
+.pdf-form * {
+  box-sizing: border-box;
+}
+
+.pdf-form *:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.pdf-form {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.pdf-form,
+.pdf-form__msg {
+  border-radius: 5px;
+  border: 1px solid #afafaf;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  background-color: #fff;
+}
+
+.pdf-form {
+  box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pdf-form__row {
+  margin-bottom: 1.5rem;
+}
+
+.pdf-form__row:last-of-type {
+  margin-bottom: 0;
+}
+
+.pdf-form__label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.pdf-form__input {
+  display: block;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  width: 100%;
+  transition: all 0.3s ease;
+  outline: none;
+}
+.pdf-form__input:not(.pdf-form__input--submit, :disabled):is(:hover) {
+  border-color: #000;
+}
+.pdf-form__input:not(.pdf-form__input--submit, :disabled):is(:focus) {
+  border-color: #000;
+  box-shadow: 4px 3px 5px rgba(0, 0, 0, 0.2);
+}
+.pdf-form__input--text {
+  padding: 1rem;
+  font-size: 1rem;
+}
+.pdf-form__input--submit {
+  background-color: #43a047;
+  color: #fff;
+  font-size: 1.3rem;
+  padding: 0.813rem 1rem;
+  cursor: pointer;
+}
+.pdf-form__input--submit:not(:disabled):hover {
+  background-color: #225624;
+}
+@media all and (min-width: 768px) {
+  .pdf-form__input--submit {
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.pdf-form__msg {
+  text-align: center;
+  text-wrap: pretty;
+  display: none;
+  margin-bottom: 1.5rem;
+}
+
+.pdf-form__msg p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.pdf-form__msg--success {
+  margin-top: 1rem;
+  border-color: #a3cfbb;
+  background-color: #d1e7dd;
+  color: #0a3622;
+  display: block;
+}
+
+.pdf-form__msg--error {
+  margin-top: 1rem;
+  border-color: #f1aeb5;
+  background-color: #f8d7da;
+  color: #58151c;
+  display: block;
+}

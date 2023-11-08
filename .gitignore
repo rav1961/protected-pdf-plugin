@@ -40,3 +40,4 @@ cache
 
 # Other
 .wp-env.json
+vendor/
