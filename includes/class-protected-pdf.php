@@ -209,22 +209,4 @@ class Protected_Pdf
 	{
 		return $this->version;
 	}
-
-	// TODO: move to class-protected-pdf-file.php
-	public static function isProtectedFile($file)
-	{
-		global $wpdb;
-
-		$table = $wpdb->prefix . PROTECTED_PDF_FILE_TABLE;
-
-		$file_to_check = "{$_SERVER['REQUEST_SCHEME']}://{$_SERVER['HTTP_HOST']}/wp-content/uploads/$file";
-
-		$sql = "SELECT count(id) as total FROM {$table} WHERE file_url=%s";
-
-		$results = $wpdb->get_results(
-			$wpdb->prepare($sql, $file_to_check)
-		);
-
-		return !(count($results) === 1 && intval($results[0]->total) === 0);
-	}
 }

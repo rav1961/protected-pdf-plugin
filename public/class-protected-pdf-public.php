@@ -41,6 +41,13 @@ class Protected_Pdf_Public
 	 */
 	private $version;
 
+	/**
+	 * The pdf file action of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      Protected_Pdf_File    $pdf_file    Class protected pdf file.
+	 */
 	private $pdf_file;
 
 	/**
