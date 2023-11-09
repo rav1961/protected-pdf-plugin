@@ -142,7 +142,9 @@ class Protected_Pdf_Public
 			return $this->show_file_viewer($atts['file']);
 		}
 
-		return $this->show_signin_form();
+		if ($this->pdf_file->is_protected($atts['file'])) {
+			return $this->show_signin_form();
+		}
 	}
 
 	public function saveMember($params)
@@ -211,7 +213,11 @@ class Protected_Pdf_Public
 			$wpdb->prepare($sql, $hash_to_check)
 		);
 
-		return !(count($results) === 1 && intval($results[0]->total) === 0);
+		if (count($results) === 0) {
+			return false;
+		}
+
+		return !(count($results) > 0 && intval($results[0]->total) === 0);
 	}
 
 	private function isPdf($file)

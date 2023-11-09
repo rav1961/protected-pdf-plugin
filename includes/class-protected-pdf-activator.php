@@ -34,9 +34,14 @@ class Protected_Pdf_Activator
 	{
 		global $wpdb;
 
-		$charset_collate = $wpdb->get_charset_collate();
+		self::create_members_table($wpdb->prefix, $wpdb->get_charset_collate());
+		self::create_protected_files_table($wpdb->prefix, $wpdb->get_charset_collate());
+		self::add_htaccess_rule();
+	}
 
-		$sqlMembers = "CREATE TABLE " . $wpdb->prefix . PROTECTED_PDF_MEMBERS_TABLE . " (
+	private static function create_members_table($prefix = '', $charset_collate = '')
+	{
+		$sql = "CREATE TABLE " . $prefix . PROTECTED_PDF_MEMBERS_TABLE . " (
 			id INT NOT NULL AUTO_INCREMENT,
 			first_name VARCHAR(255),
 			email VARCHAR(255),
@@ -47,7 +52,13 @@ class Protected_Pdf_Activator
 			KEY hash (hash)
 		) $charset_collate;";
 
-		$sqlFiles = "CREATE TABLE " . $wpdb->prefix . PROTECTED_PDF_FILE_TABLE . " (
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		dbDelta($sql);
+	}
+
+	private static function create_protected_files_table($prefix = '', $charset_collate = '')
+	{
+		$sql = "CREATE TABLE " . $prefix . PROTECTED_PDF_FILE_TABLE . " (
 			id INT NOT NULL AUTO_INCREMENT,
 			file_url VARCHAR(255),
 			post_type VARCHAR(255),
@@ -60,7 +71,18 @@ class Protected_Pdf_Activator
 		) $charset_collate;";
 
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-		dbDelta($sqlMembers);
-		dbDelta($sqlFiles);
+		dbDelta($sql);
+	}
+
+	private static function add_htaccess_rule()
+	{
+		$htaccess_file = '.htaccess';
+		$current_htaccess_file = file_get_contents($htaccess_file);
+
+		$plugin_rule = "RewriteRule ^wp-content/uploads/(.*)\.pdf$ /wp-content/plugins/protected-pdf-plugin/includes/proxy-protected-files.php?file=$1 [QSA,L]\n";
+
+		$current_htaccess_file .= $plugin_rule;
+
+		file_put_contents($htaccess_file, $current_htaccess_file);
 	}
 }

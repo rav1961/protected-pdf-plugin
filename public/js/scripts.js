@@ -14,10 +14,10 @@
   }
 
   function submitSignInForm() {
-    var memberData = $('#protected-pdf-signin').serializeArray();
-
     $('#protected-pdf-signin').on('submit', function (e) {
       e.preventDefault();
+
+      var memberData = $('#protected-pdf-signin').serializeArray();
 
       if (isFormSending) {
         return false;
