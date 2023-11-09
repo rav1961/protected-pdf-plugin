@@ -38,13 +38,16 @@ class Protected_Pdf_Deactivator
 
 	private static function remove_htaccess_rule()
 	{
-		$htaccess_file = '.htaccess';
-		$current_htaccess = file_get_contents($htaccess_file);
+		$htaccess_file = ABSPATH . '.htaccess';
 
-		$old_plugin_rule = "RewriteRule ^wp-content/uploads/(.*)\.pdf$ /wp-content/plugins/protected-pdf-plugin/includes/proxy-protected-files.php?file=$1 [QSA,L]\n";
-		$current_htaccess = str_replace($old_plugin_rule, '', $current_htaccess);
+		$remove_plugin_rule = "\n# BEGIN PROTECTED-PDF-PLUGIN\n" .
+			"# END PROTECTED-PDF-PLUGIN\n\n";
 
-		file_put_contents($htaccess_file, $current_htaccess);
+		$htaccess_updated = insert_with_markers($htaccess_file, 'prevent_pdf', $remove_plugin_rule);
+
+		if (!$htaccess_updated) {
+			echo __('Failed to remove the rule from the .htaccess file.', 'protected-pdf');
+		}
 	}
 
 	private static function clear_db_tables()

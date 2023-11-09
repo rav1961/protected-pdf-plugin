@@ -76,13 +76,16 @@ class Protected_Pdf_Activator
 
 	private static function add_htaccess_rule()
 	{
-		$htaccess_file = '.htaccess';
-		$current_htaccess_file = file_get_contents($htaccess_file);
+		$htaccess_file = ABSPATH . '.htaccess';
 
-		$plugin_rule = "RewriteRule ^wp-content/uploads/(.*)\.pdf$ /wp-content/plugins/protected-pdf-plugin/includes/proxy-protected-files.php?file=$1 [QSA,L]\n";
+		$plugin_rule = "\n# BEGIN PROTECTED-PDF-PLUGIN\n" .
+			"RewriteRule ^wp-content/uploads/(.*)\.pdf$ /wp-content/plugins/protected-pdf-plugin/includes/proxy-protected-files.php?file=$1 [QSA,L]\n" .
+			"# END PROTECTED-PDF-PLUGIN\n\n";
 
-		$current_htaccess_file .= $plugin_rule;
+		$htaccess_updated = insert_with_markers($htaccess_file, 'prevent_pdf', $plugin_rule);
 
-		file_put_contents($htaccess_file, $current_htaccess_file);
+		if (!$htaccess_updated) {
+			echo __('Failed to add the rule to the .htaccess file.', 'protected-pdf');
+		}
 	}
 }
