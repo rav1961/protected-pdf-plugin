@@ -22,7 +22,7 @@ if (strpos($_SERVER['SCRIPT_NAME'], PLUGIN_PROXY_FILE_PATH) !== false) {
     $file_fullname_uri = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 
     // check protected files in database table
-    if ($protectedFile->is_protected($file_fullname_uri) && !isset($_SERVER['HTTP_REFERER'])) {
+    if ($protectedFile->is_protected($file_fullname_uri) && (!isset($_SERVER['HTTP_REFERER']) || $_SERVER['HTTP_SEC_FETCH_DEST'] === 'iframe')) {
         wp_die(__('Access denied', 'protected-pdf'));
     } else {
         $protectedFile->display_file($file_fullname_path);
